@@ -1,7 +1,11 @@
 <h1>Index</h1>
 
-<div class="sign_in" >
-  
+<div class="client_sign_in" >
+  <%= link_to 'Client Sign In', new_client_session_path %>
+</div>
+<br>
+<div class="mentor_sign_in" >
+  <%= link_to 'Mentor Sign In', new_mentor_session_path %>
 </div>
 
 <% if current_client %>

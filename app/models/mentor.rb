@@ -1,5 +1,6 @@
 class Mentor
   include Mongoid::Document
+  include Mongoid::Timestamps
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,
@@ -41,4 +42,5 @@ class Mentor
   field :achievements, type:String
   field :mobile_number, type:String
 
+  has_many :offers,dependent: :destroy
 end
