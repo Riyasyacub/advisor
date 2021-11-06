@@ -1,0 +1,13 @@
+<h1>Index</h1>
+
+<div class="sign_in" >
+  
+</div>
+
+<% if current_client %>
+  <%= link_to 'sign out', destroy_client_session_path, method: :delete %>
+<% end %>
+
+<% if current_mentor %>
+  <%= link_to 'sign out', destroy_mentor_session_path, method: :delete %>
+<% end %>
