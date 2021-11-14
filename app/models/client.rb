@@ -38,4 +38,8 @@ class Client
   field :name, type:String
   field :preffered_language, type:String
   field :mobile_number, type:String
+
+  def id
+    self['id'].to_s
+  end
 end

@@ -15,3 +15,11 @@
 <% if current_mentor %>
   <%= link_to 'sign out', destroy_mentor_session_path, method: :delete %>
 <% end %>
+
+<% @category.each do |cat| %>
+  <button type="button" class="category" id="<%= cat.id %>" ><%= cat.name %></button>
+<% end %>
+
+<div id="show_offers" class="d-flex" >
+  
+</div>

@@ -4,4 +4,8 @@ class Category
 
   field :name,type: String
   has_many :offers
+
+  def id
+    self['id'].to_s
+  end
 end

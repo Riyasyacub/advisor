@@ -1,0 +1,33 @@
+<h1><%= @offer["name"] %></h1>
+<p><%= @offer["description"] %></p>
+<b>Price: ₹ <%= @offer["price"] %></b>
+
+<br><br>
+<h1>Form For scheduling the time</h1>
+<p>Offered By:</p>
+<h4><%= @offer["mentor"]["name"] %></h4>
+<span class="" ><%= @offer['mentor']['designation'] %> , </span><span class="" ><%= @offer['mentor']['organization'] %></span>
+<br><br>
+<p><b>Bio :</b><%= @offer["mentor"]["bio"] %></p>
+<p><b>Achievements :</b><%= @offer["mentor"]["achievements"]%></p>
+
+<h5>Other Offers by Mentor :</h5>
+<% @offer["mentor"]["offers"].each do |offer| %>
+<% unless @offer["id"] == offer["id"] %>
+<a href="/offers_show/<%= offer["id"]%>" style="text-decoration: none;" class="" ><div id="<%=offer["id"]%>" class="offers card m-3 btn-outline-success text-dark " style="width:18rem;"  >
+                <div class="card-body" >
+                
+                <h5 class="card-title" ><%= offer['name']%></h5>
+                <div class="text-info" >Price: ₹<%= offer['price']%>/hr</div>
+                
+                  <div class="card-title" >Mentor Details</div>
+                  <div class=" card-title " ><%=  @offer["mentor"]  ["name"] %></div>
+                       <span class="" ><%= @offer["mentor"]['designation']%> , </span>
+                       <span class="" ><%= @offer["mentor"]['organization'] %></span>
+                  </div>
+                </div>
+              </div>
+              </div>
+              </a>
+<% end %>
+              <% end %>

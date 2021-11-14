@@ -43,4 +43,9 @@ class Mentor
   field :mobile_number, type:String
 
   has_many :offers,dependent: :destroy
+
+
+  def id
+    self['id'].to_s
+  end
 end
