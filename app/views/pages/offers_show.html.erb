@@ -1,9 +1,76 @@
 <h1><%= @offer["name"] %></h1>
 <p><%= @offer["description"] %></p>
 <b>Price: ₹ <%= @offer["price"] %></b>
-
+<script>console.log(<%= current_client %>)</script>
 <br><br>
-<h1>Form For scheduling the time</h1>
+
+<h1>Change Booking according to slots!!!!!!!!!</h1>
+
+<% if current_client %>
+
+<h3>Slots Available</h3>
+  <% @slots.each do |sl| %>
+    <div class="card" >
+      <div class="card-body" >
+        <div> <span>Start Time :</span> <%= sl.start_time.to_s(:time) %> </div>
+        <div> <span>End Time :</span> <%= sl.end_time.to_s(:time) %> </div>
+        <div> <span>Frequency :</span> 
+        <% sl.frequency.each_with_index do |fre,i| %>
+        <% if fre!= "" %>
+        <% if i==1 %>
+          <%= fre %>
+        <% else %>
+          <%= ", " + fre %>
+        <% end %>
+        <% end %>
+        <% end %>
+         </div>
+      </div>
+    </div>
+    <% end %>
+
+<%= form_for @booking, url: new_booking_path do |f| %>
+  <%= f.text_field :mentor_id, {value: @offer["mentor"]["id"], hidden: "true"} %>
+  <%= f.text_field :client_id, {value: current_client.id, hidden: "true"} %>
+  <%= f.text_field :offer_id, {value: @offer["id"], hidden: "true"} %>
+  <%= f.label :start_time %>
+  <%= f.datetime_field :start_time%>
+  <br>
+  <%= f.label :end_time %>
+  <%= f.datetime_field :end_time %>
+  <br>
+  <%= f.submit "Submit" %>
+<% end %>
+
+<% elsif current_mentor %>
+  <h3>Slots Available</h3>
+  <% @slots.each do |sl| %>
+    <div class="card" >
+      <div class="card-body" >
+        <div> <span>Start Time :</span> <%= sl.start_time.to_s(:time) %> </div>
+        <div> <span>End Time :</span> <%= sl.end_time.to_s(:time) %> </div>
+        <div> <span>Frequency :</span> 
+        <% sl.frequency.each_with_index do |fre,i| %>
+        <% if fre!= "" %>
+        <% if i==1 %>
+          <%= fre %>
+        <% else %>
+          <%= ", " + fre %>
+        <% end %>
+        <% end %>
+        <% end %>
+         </div>
+      </div>
+    </div>
+    
+  <% end %>
+
+  <h3>Add Slots</h3>
+  <%= render "mentors/slots/new" %> 
+
+
+
+<% end %>
 <p>Offered By:</p>
 <h4><%= @offer["mentor"]["name"] %></h4>
 <span class="" ><%= @offer['mentor']['designation'] %> , </span><span class="" ><%= @offer['mentor']['organization'] %></span>

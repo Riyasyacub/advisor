@@ -1,0 +1,14 @@
+<%= form_for @slot, url: create_slot_path do |f| %>
+  <%= f.text_field :mentor_id, {value: current_mentor.id, hidden: true} %>
+  <%= f.text_field :offer_id, {value: @offer["id"], hidden: true} %>
+  <%= f.label :start_time %>
+  <%= f.time_field :start_time %>
+  <br>
+  <%= f.label :end_time %>
+  <%= f.time_field :end_time %>
+  <br>
+  <%= f.label :frequency %>
+  <%= f.select :frequency, [["Monday","Monday"],["Tuesday","Tuesday"],["Wednesday","Wednesday"],["Thursday","Thursday"],["Friday","Friday"],["Saturday","Saturday"],["Sunday","Sunday"]] ,{},{multiple: true} %>
+  <br>
+  <%= f.submit "Submit" %>
+<% end %>

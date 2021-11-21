@@ -43,7 +43,8 @@ class Mentor
   field :mobile_number, type:String
 
   has_many :offers,dependent: :destroy
-
+  has_many :bookings, dependent: :destroy
+  has_many :slots, dependent: :destroy
 
   def id
     self['id'].to_s

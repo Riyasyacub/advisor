@@ -39,6 +39,8 @@ class Client
   field :preffered_language, type:String
   field :mobile_number, type:String
 
+  has_many :bookings, dependent: :destroy
+  
   def id
     self['id'].to_s
   end

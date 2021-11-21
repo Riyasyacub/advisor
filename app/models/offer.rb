@@ -8,7 +8,8 @@ class Offer
 
   belongs_to :mentor
   belongs_to :category
-
+  has_many :bookings
+  has_many :slots, dependent: :destroy
   def id
     self['id'].to_s
   end

@@ -1,0 +1,2 @@
+module Mentors::OffersHelper
+end
