@@ -36,17 +36,23 @@ class PagesController < ApplicationController
   def new_booking
     booking = Booking.new(booking_params)
     # raise booking_params.inspect
-    if booking.save
-      redirect_to offers_show_path(booking["offer_id"])
+    old_booking = Booking.where(date: booking['date'], slots_id: booking['slots_id'] ).first
+    # raise old_booking;
+    if !(old_booking)
+      if booking.save
+        redirect_to offers_show_path(booking["offer_id"])
+      else
+        raise booking.inspect
+      end
     else
-      raise booking.inspect
+      redirect_to offers_show_path(booking["offer_id"],"slot already booked for another user!")
     end
   end
 
   private
 
   def booking_params
-    params.require(:booking).permit(:start_time,:end_time,:mentor_id,:client_id,:offer_id)
+    params.require(:booking).permit(:date,:mentor_id,:client_id,:offer_id,:slots_id)
   end
 
 end

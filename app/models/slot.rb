@@ -8,5 +8,5 @@ class Slot
 
   belongs_to :offer
   belongs_to :mentor
-
+  has_many :bookings
 end
